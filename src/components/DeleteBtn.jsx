@@ -1,5 +1,7 @@
 import { fetchData } from "./RefreshBtn";
 import { useShowRed } from "./ShowRed";
+const API_BASE_URL = import.meta.env.VITE_API_URL;
+
 
 export const handleDelete = async (name, setContent, showRed, setName) => {
   if (!name.trim()) {
@@ -10,7 +12,7 @@ export const handleDelete = async (name, setContent, showRed, setName) => {
   }
 
   try {
-    const res = await fetch("/friends", {
+    const res = await fetch(`${API_BASE_URL}/friends`, {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ name }),

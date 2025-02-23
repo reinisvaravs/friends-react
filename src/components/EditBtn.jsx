@@ -1,5 +1,7 @@
 import { fetchData } from "./RefreshBtn";
 import { useShowRed } from "./ShowRed";
+const API_BASE_URL = import.meta.env.VITE_API_URL;
+
 
 function EditBtn({
   name,
@@ -21,7 +23,7 @@ function EditBtn({
     }
 
     try {
-      const res = await fetch("/changevalue", {
+      const res = await fetch(`${API_BASE_URL}/changevalue`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, newValue: value }),

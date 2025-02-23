@@ -1,5 +1,7 @@
 import { useShowRed } from "./ShowRed";
 import { fetchData } from "./RefreshBtn";
+const API_BASE_URL = import.meta.env.VITE_API_URL;
+
 
 function AddBtn({ name, value, setContent, setName, setValue }) {
   const { redButton, showRed } = useShowRed();
@@ -14,7 +16,7 @@ function AddBtn({ name, value, setContent, setName, setValue }) {
     }
 
     try {
-      const res = await fetch("/addfriend", {
+      const res = await fetch(`${API_BASE_URL}/friends`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ [name]: value }),

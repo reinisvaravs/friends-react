@@ -1,8 +1,10 @@
 import React from "react";
+const API_BASE_URL = import.meta.env.VITE_API_URL;
+
 
 export const fetchData = async () => {
   try {
-    const res = await fetch("/friends");
+    const res = await fetch(`${API_BASE_URL}/friends`);
     if (!res.ok) {
       throw new Error(`Network response was not ok: ${res.statusText}`);
     }

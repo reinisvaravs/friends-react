@@ -40,7 +40,9 @@ function InputMenu() {
 
   return (
     <>
-      <h1 className={contentStyles.heading1}>CRUD - NODE.JS - FIREBASE</h1>
+      <h1 className={contentStyles.heading1}>PADLET.COM CLONE</h1>
+      <h2 className={contentStyles.heading2}>html5, css3, javascript, react.js, vite, node.js, express.js, firebase
+      </h2>
       <div className={contentStyles.inputsDiv}>
         <input
           type="text"

@@ -16,7 +16,7 @@ function AddBtn({ name, value, setContent, setName, setValue }) {
     }
 
     try {
-      const res = await fetch(`${API_BASE_URL}/friends`, {
+      const res = await fetch(`${API_BASE_URL}/addfriend`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ [name]: value }),

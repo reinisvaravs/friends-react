@@ -1,7 +1,6 @@
-import { useShowRed } from "./ShowRed";
+import { useShowRed } from "../sideFunctions/ShowRed";
 import { fetchData } from "./RefreshBtn";
 const API_BASE_URL = import.meta.env.VITE_API_URL;
-
 
 function AddBtn({ name, value, setContent, setName, setValue }) {
   const { redButton, showRed } = useShowRed();
@@ -28,8 +27,8 @@ function AddBtn({ name, value, setContent, setName, setValue }) {
         return;
       }
 
-      const updatedContent = await fetchData(); 
-      setContent(updatedContent); 
+      const updatedContent = await fetchData();
+      setContent(updatedContent);
       setName("");
       setValue("");
     } catch (error) {

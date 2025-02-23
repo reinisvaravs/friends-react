@@ -1,7 +1,6 @@
 import { fetchData } from "./RefreshBtn";
-import { useShowRed } from "./ShowRed";
+import { useShowRed } from "../sideFunctions/ShowRed";
 const API_BASE_URL = import.meta.env.VITE_API_URL;
-
 
 export const handleDelete = async (name, setContent, showRed, setName) => {
   if (!name.trim()) {

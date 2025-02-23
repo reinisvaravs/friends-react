@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
-import AddBtn from "./AddBtn";
-import DeleteBtn, { handleDelete } from "./DeleteBtn";
-import EditBtn from "./EditBtn";
-import RefreshBtn, { fetchData } from "./RefreshBtn";
+import AddBtn from "./buttons/AddBtn";
+import DeleteBtn, { handleDelete } from "./buttons/DeleteBtn";
+import EditBtn from "./buttons/EditBtn";
+import RefreshBtn, { fetchData } from "./buttons/RefreshBtn";
 import firebaseLogo from "../assets/firebaseLogo.png";
 import { FaTrashAlt } from "react-icons/fa";
+import contentStyles from "./Content.module.css";
+import buttonStyles from "./buttons/Buttons.module.css"
 
 function InputMenu() {
   const [content, setContent] = useState([]);
@@ -38,24 +40,24 @@ function InputMenu() {
 
   return (
     <>
-      <h1 className="heading1">CRUD - NODE.JS - FIREBASE</h1>
-      <div className="inputs-div">
+      <h1 className={contentStyles.heading1}>CRUD - NODE.JS - FIREBASE</h1>
+      <div className={contentStyles.inputsDiv}>
         <input
           type="text"
           value={name}
           onChange={(e) => setName(e.target.value)}
           placeholder="name"
-          className="nameInput"
+          className={contentStyles.nameInput}
         />
         <input
           type="text"
           value={value}
           onChange={(e) => setValue(e.target.value)}
           placeholder="value"
-          className="valueInput"
+          className={contentStyles.valueInput}
         />
       </div>
-      <div className="buttons-div">
+      <div className={buttonStyles.buttonsDiv}>
         <AddBtn
           name={name}
           value={value}
@@ -80,7 +82,7 @@ function InputMenu() {
         />
       </div>
 
-      <div className="sort-buttons">
+      <div className={buttonStyles.sortButtons}>
         <button onClick={() => setSortOption("name")}>
           Sort by Name (A-Z)
         </button>
@@ -92,10 +94,14 @@ function InputMenu() {
       <ul id="content">
         {Array.isArray(content) && content.length > 0 ? (
           content.map(([key, value], index) => (
-            <div className="item" key={index}>
+            <div className={contentStyles.item} key={index}>
               {content.length > 0 && (
-                <button onClick={() => handleDelete(key, setContent, () => {}, setName)}>
-                  <FaTrashAlt className="trash-icon" />
+                <button
+                  onClick={() =>
+                    handleDelete(key, setContent, () => {}, setName)
+                  }
+                >
+                  <FaTrashAlt className={contentStyles.trashIcon} />
                 </button>
               )}
               <li>
@@ -104,7 +110,7 @@ function InputMenu() {
             </div>
           ))
         ) : (
-          <img src={firebaseLogo} alt="Loading..." id="loadingLogo" />
+          <img src={firebaseLogo} alt="Loading..." className={contentStyles.loadingLogo} />
         )}
       </ul>
     </>

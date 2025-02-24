@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 const API_BASE_URL = import.meta.env.VITE_API_URL;
 
 
@@ -20,7 +20,8 @@ export const fetchData = async () => {
   }
 };
 
-export function RefreshBtn({ setContent, buttonText, setButtonText }) {
+export function RefreshBtn({ buttonText, setButtonText }) {
+  
   const handleRefresh = async () => {
     setButtonText("Refreshing...");
     const data = await fetchData();

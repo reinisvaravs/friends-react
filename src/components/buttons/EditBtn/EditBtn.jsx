@@ -1,5 +1,4 @@
-import { fetchData } from "./RefreshBtn";
-import { useShowRed } from "../sideFunctions/ShowRed";
+import { fetchData } from "../RefreshBtn/RefreshBtn";
 const API_BASE_URL = import.meta.env.VITE_API_URL;
 
 function EditBtn({
@@ -10,12 +9,9 @@ function EditBtn({
   setName,
   setValue,
 }) {
-  const { redButton, showRed } = useShowRed();
-
   const handleEdit = async () => {
     if (!name.trim() || !value.trim()) {
       console.error("Name or value is empty.");
-      showRed("editBtn");
       setName("");
       setValue("");
       return;
@@ -31,7 +27,6 @@ function EditBtn({
       if (!res.ok) {
         const data = await res.json();
         console.error("Error editing person:", data.error);
-        showRed("editBtn");
         setName("");
         setValue("");
         return;
@@ -43,15 +38,12 @@ function EditBtn({
       setValue("");
     } catch (error) {
       console.error("Error editing person:", error);
-      showRed("editBtn");
     }
   };
 
   return (
     <button
-      id="editBtn"
       onClick={handleEdit}
-      style={{ background: redButton === "editBtn" ? "red" : "" }}
     >
       Edit
     </button>

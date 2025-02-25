@@ -8,7 +8,8 @@ function BottomMenu({ setContent }) {
   const [subject, setSubject] = useState("");
   const [text, setText] = useState("");
   const [cardColor, setCardColor] = useState("white");
-  const [colorChoice, setColorChoice] = useState("White")
+  const [colorChoice, setColorChoice] = useState("White");
+  const [colorOpen, setColorOpen] = useState(false);
 
   const handleNewCard = () => {
     setIsModalOpen(true);
@@ -26,8 +27,8 @@ function BottomMenu({ setContent }) {
   };
 
   const handleColorChoice = () => {
-    
-  }
+    setColorOpen(true);
+  };
 
   return (
     <div className={styles.container}>
@@ -70,6 +71,17 @@ function BottomMenu({ setContent }) {
               <p>{colorChoice}</p>
               <IoIosArrowDown className={styles.arrow} />
             </button>
+            {colorOpen ? (
+              <div className={styles.colorChoice}>
+                <p>Color</p>
+                <ul>
+                  <div>
+                    <div></div>
+                    <p>White</p>
+                  </div>
+                </ul>
+              </div>
+            ) : null}
           </div>
         </div>
       )}

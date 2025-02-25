@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 const API_BASE_URL = import.meta.env.VITE_API_URL;
 
 
@@ -10,15 +10,18 @@ export const fetchData = async () => {
     }
 
     const result = await res.json();
-
-    return Object.entries(result.data || {}).sort((a, b) =>
-      a[0].localeCompare(b[0])
-    );
+    
+    return Object.entries(result.data || {}).map(([name, details]) => ({
+      name,
+      value: details.value,
+      likeCount: details.likeCount,
+    }));
   } catch (error) {
     console.error("Error fetching content:", error);
-    return [["Error", "Error loading content"]];
+    return [];
   }
 };
+
 
 export function RefreshBtn({ buttonText, setButtonText }) {
   

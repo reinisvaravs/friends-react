@@ -7,7 +7,6 @@ function BottomMenu({ setContent }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [subject, setSubject] = useState("");
   const [text, setText] = useState("");
-  const [cardColor, setCardColor] = useState("white");
   const [colorChoice, setColorChoice] = useState("White");
   const [colorOpen, setColorOpen] = useState(false);
 

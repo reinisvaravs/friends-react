@@ -1,7 +1,7 @@
 import { fetchData } from "../RefreshBtn/RefreshBtn";
 const API_BASE_URL = import.meta.env.VITE_API_URL;
 
-export const handleDelete = async (name, setContent, showRed, setName) => {
+export const handleDelete = async (name, setContent, setName) => {
   if (!name.trim()) {
     console.error("Name field is empty.");
     setName("");
@@ -16,10 +16,16 @@ export const handleDelete = async (name, setContent, showRed, setName) => {
     });
 
     if (!res.ok) {
-      const errorData = await res.json();
-      console.error("Error deleting:", errorData.error);
+      console.error("Error deleting friend.");
       setName("");
       return;
+    }
+
+    // Remove the deleted post from local storage
+    const likedPosts = JSON.parse(localStorage.getItem("likedPosts")) || {};
+    if (likedPosts[name]) {
+      delete likedPosts[name]; // Remove the deleted post
+      localStorage.setItem("likedPosts", JSON.stringify(likedPosts)); // Save the updated list
     }
 
     const updatedContent = await fetchData();
@@ -33,9 +39,7 @@ export const handleDelete = async (name, setContent, showRed, setName) => {
 
 function DeleteBtn({ name, setContent, setName }) {
   return (
-    <button
-      onClick={() => handleDelete(name, setContent, showRed, setName)}
-    >
+    <button onClick={() => handleDelete(name, setContent, showRed, setName)}>
       Delete
     </button>
   );

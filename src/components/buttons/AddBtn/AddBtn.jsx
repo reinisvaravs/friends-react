@@ -12,7 +12,7 @@ export const handleAdd = async (name, value, setContent) => {
     const res = await fetch(`${API_BASE_URL}/addfriend`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ [name]: value }),
+      body: JSON.stringify({ name, value, likeCount: 0 }), // Include likeCount
     });
 
     if (!res.ok) {
@@ -22,10 +22,12 @@ export const handleAdd = async (name, value, setContent) => {
 
     console.log("Added successfully!");
 
-    // Fetch updated content and update UI
     const updatedContent = await fetchData();
-    setContent(updatedContent);  // Refresh the card list after adding
-
+    if (typeof setContent === "function") {
+      setContent(updatedContent);
+    } else {
+      console.error("setContent is not a function!");
+    }
   } catch (error) {
     console.error("Error:", error);
   }

@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import styles from "./BottomMenu.module.css";
 import { handleAdd } from "../buttons/AddBtn/AddBtn";
+import { IoIosArrowDown } from "react-icons/io";
 
 function BottomMenu({ setContent }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [subject, setSubject] = useState("");
   const [text, setText] = useState("");
+  const [cardColor, setCardColor] = useState("white");
+  const [colorChoice, setColorChoice] = useState("White")
 
   const handleNewCard = () => {
     setIsModalOpen(true);
@@ -18,9 +21,13 @@ function BottomMenu({ setContent }) {
   };
 
   const handlePublish = async () => {
-    closeModal(); 
+    closeModal();
     await handleAdd(subject, text, setContent);
   };
+
+  const handleColorChoice = () => {
+    
+  }
 
   return (
     <div className={styles.container}>
@@ -56,6 +63,13 @@ function BottomMenu({ setContent }) {
               value={text}
               onChange={(e) => setText(e.target.value)}
             />
+          </div>
+          <div className={styles.cardFooter}>
+            <button onClick={handleColorChoice}>
+              <div></div>
+              <p>{colorChoice}</p>
+              <IoIosArrowDown className={styles.arrow} />
+            </button>
           </div>
         </div>
       )}

@@ -85,6 +85,7 @@
   flex-direction: column;
   gap: 20px;
   width: 90%;
+  height: 290px;
   margin: 0 5% 0 5%;
 }
 
@@ -130,4 +131,45 @@
 }
 .valueInput:focus {
   outline: none;
+}
+.cardFooter {
+  width: 90%;
+  margin: 0 5% 0 5%;
+}
+
+.cardFooter > button {
+  width: 90px;
+  height: 25px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  border: none;
+  border-radius: 10px;
+  gap: 7px;
+  padding: 0;
+  cursor: pointer;
+
+  div {
+    width: 13px;
+    height: 13px;
+    border-radius: 20px;
+    background-color: white;
+  }
+  p {
+    color: #b8b8b8;
+    font-size: 13px;
+  }
+}
+
+.arrow {
+  color: #656565;
+}
+
+.cardFooter > button:hover {
+  background-color: #272828;
+  p {
+    color: #ced0d4;
+  }
 }

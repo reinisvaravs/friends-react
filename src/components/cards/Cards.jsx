@@ -1,11 +1,13 @@
 import styles from "./Cards.module.css";
 import firebaseLogo from "../../assets/firebaseLogo.png";
 import { fetchData } from "../buttons/RefreshBtn/RefreshBtn";
-import { useEffect } from "react";
-import { FaTrashAlt } from "react-icons/fa";
+import { useEffect, useState } from "react";
+import { FaTrashAlt, FaRegHeart, FaHeart } from "react-icons/fa";
 import { handleDelete } from "../buttons/DeleteBtn/DeleteBtn";
 
 function Cards({ content, setContent, setName }) {
+  const [likes, setLikes] = useState({}); // Store likes for each card
+
   useEffect(() => {
     const loadData = async () => {
       const data = await fetchData();
@@ -13,6 +15,18 @@ function Cards({ content, setContent, setName }) {
     };
     loadData();
   }, [setContent]);
+
+  const handleIsLiked = (key) => {
+    setLikes((prevLikes) => ({
+      ...prevLikes,
+      [key]: {
+        isLiked: !prevLikes[key]?.isLiked,
+        likeCount: prevLikes[key]?.isLiked
+          ? prevLikes[key].likeCount - 1
+          : (prevLikes[key]?.likeCount || 0) + 1,
+      },
+    }));
+  };
 
   return (
     <div className={styles.cardDiv}>
@@ -27,14 +41,19 @@ function Cards({ content, setContent, setName }) {
               </button>
             </div>
             <div className={styles.cardBody}>
-              <p>
+              <p className={styles.name}>
                 <b>{key}</b>
               </p>
-              <p>{value}</p>
+              <p className={styles.value}>{value}</p>
             </div>
             <div className={styles.cardFooter}>
-              <button className={styles.likeButton}>Like 0</button>
-              <button className={styles.commentButton}>Comment 0</button>
+              <button
+                className={likes[key]?.isLiked ? styles.liked : styles.notLiked}
+                onClick={() => handleIsLiked(key)}
+              >
+                {likes[key]?.isLiked ? <FaHeart /> : <FaRegHeart />}
+                <p>{likes[key]?.likeCount || 0}</p>
+              </button>
             </div>
           </div>
         ))

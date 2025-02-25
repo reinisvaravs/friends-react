@@ -7,43 +7,39 @@
 }
 
 .card {
-  width: 230px;
+  width: 270px;
   min-height: 100px;
-  background-color: rgba(0, 0, 0, 0.3);
-  border: 1px solid black;
+  background-color: white;
   border-radius: 20px;
   display: flex;
   flex-direction: column;
-
-  button {
-    background-color: transparent;
-    border: none;
-    width: 30px;
-    height: 30px;
-    margin: 5% 5% 0 0;
-  }
-  button:hover {
-    background-color: rgba(255, 255, 255, 0.2);
-  }
+  color: #111111;
 }
 
 .cardHeader {
   width: 100%;
-  height: 50px;
+  height: 20px;
   border-radius: 20px 20px 0 0;
   position: relative;
 
   button {
     position: absolute;
-    top: 0;
-    right: 0;
+    top: 5px;
+    right: 5px;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    width: 30px;
+    height: 30px;
   }
 }
 
 .trashIcon {
   background-color: transparent;
-  color: white;
+  color: #757575;
   margin: auto;
+  width: 13px;
+  height: 13px;
 }
 
 .cardBody {
@@ -51,6 +47,17 @@
   flex-direction: column;
   width: 90%;
   margin: 0 5% 0 5%;
+  font-size: 18px;
+}
+
+.name {
+  margin-right: 30px;
+}
+
+.value {
+  border-bottom: 1px solid rgb(205, 205, 205);
+  padding-bottom: 20px;
+  margin-top: -5px;
 }
 
 .firebaseLogo {
@@ -71,19 +78,42 @@
 .cardFooter {
   display: flex;
   flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: space-between;
+  justify-content: flex-start;
   width: 90%;
-  margin: 30px 5% 0 5%;
+  margin: 0 5% 0 5%;
   min-height: 40px;
 
   button {
+    width: 40px;
+    height: 30px;
     display: flex;
     flex-direction: row;
-    flex-wrap: nowrap;
     justify-content: center;
     align-items: center;
-    color: white;
-    width: 50%;
+    gap: 5px;
+    border: none;
+    border-radius: 10px;
+    background-color: transparent;
+    transform: translateY(-7px);
+    cursor: pointer;
   }
+}
+
+.liked {
+  color: #9466e8;
+  p {
+    color: #757575;
+  }
+}
+.liked:hover {
+  p {
+    color: black;
+  }
+}
+
+.notLiked {
+  color: #757575;
+}
+.notLiked:hover {
+  color: black;
 }

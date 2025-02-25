@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styles from "./InputMenu.module.css";
-import Cards from "./Cards/Cards";
+import Cards from "./cards/Cards"
 import BottomMenu from "./bottomMenu/BottomMenu";
 
 function InputMenu() {
